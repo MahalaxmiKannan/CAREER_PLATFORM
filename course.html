@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Catalog - ElevateHer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#FFB6C1',
+secondary: '#FFC0CB'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { font-family: 'Inter', sans-serif; }
+.course-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+gap: 24px;
+}
+.filter-dropdown {
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: all 0.2s ease-in-out;
+}
+.filter-dropdown.show {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<a href="page1.html" data-readdy="true" class="font-['Pacifico'] text-2xl text-primary">ElevateHer</a>
+<div class="hidden md:flex space-x-8 ml-10">
+<a href="page1.html" data-readdy="true" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+<a href="#" class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium">Courses</a>
+<a href="mentor.html" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Mentorship</a>
+<a href="#" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Community</a>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<input type="text" placeholder="Search courses..." class="w-64 pl-10 pr-4 py-2 text-sm bg-gray-100 border-none rounded-full focus:outline-none focus:ring-2 focus:ring-primary/20">
+<div class="absolute left-3 top-2.5 w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+<button class="relative w-10 h-10 flex items-center justify-center cursor-pointer" id="notificationBtn">
+<i class="ri-notification-3-line text-gray-700"></i>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="relative" id="profileDropdown">
+<button class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer">
+<i class="ri-user-line text-gray-700"></i>
+</button>
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<main class="pt-28 pb-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h1 class="text-3xl font-bold text-gray-900">Course Catalog</h1>
+<p class="text-gray-600 mt-2">Discover courses tailored to your career growth</p>
+</div>
+<div class="flex space-x-4">
+<div class="relative" id="skillLevelFilter">
+<button class="px-4 py-2 bg-white border rounded-button text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
+<span>Skill Level</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+<div class="relative" id="durationFilter">
+<button class="px-4 py-2 bg-white border rounded-button text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
+<span>Duration</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+<div class="relative" id="topicFilter">
+<button class="px-4 py-2 bg-white border rounded-button text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
+<span>Topic</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+
+<div class="mb-12">
+<div class="flex space-x-1 bg-gray-100 p-1 rounded-full w-fit">
+<button class="px-6 py-2 rounded-full bg-white text-gray-900 shadow-sm" id="leadershipTab">Leadership</button>
+<button class="px-6 py-2 rounded-full text-gray-600 hover:text-gray-900" id="technicalTab">Technical Skills</button>
+<button class="px-6 py-2 rounded-full text-gray-600 hover:text-gray-900" id="careerTab">Career Development</button>
+</div>
+</div>
+
+<div class="course-grid" id="courseGrid">
+</div>
+</div>
+</main>
+
+<footer class="bg-pink-900 text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a href="#" class="font-['Pacifico'] text-2xl text-white mb-4 block">ElevateHer</a>
+<p class="text-gray-400 text-sm">Empowering women to achieve their career goals through mentorship and skill development.</p>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Programs</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Mentorship</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Events</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Resources</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Careers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Support</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Get in Touch</h3>
+<p class="text-gray-400 text-sm mb-4">Have questions? We're here to help.</p>
+<button class="w-full !rounded-button bg-primary text-white px-4 py-2 hover:bg-primary/90 transition cursor-pointer">Contact Us</button>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+const courseData = [
+{
+id: 1,
+category: 'leadership',
+title: 'Strategic Leadership & Decision Making',
+description: 'Learn effective leadership strategies and decision-making frameworks for executive roles',
+image: 'cc1.jpg',
+level: 'Advanced',
+duration: '8 weeks',
+rating: 4.8,
+reviews: 245,
+instructor: 'Sarah Anderson',
+price: '₹599'
+},
+{
+id: 2,
+category: 'leadership',
+title: 'Women in Tech Leadership',
+description: 'Navigate and excel in technology leadership roles with confidence',
+image: 'cc2.jpg',
+level: 'Intermediate',
+duration: '6 weeks',
+rating: 4.9,
+reviews: 189,
+instructor: 'Emily Chen',
+price: '₹499'
+},
+{
+id: 3,
+category: 'technical',
+title: 'Data Science Fundamentals',
+description: 'Master the basics of data analysis and machine learning',
+image: 'cc3.jpg',
+level: 'Beginner',
+duration: '10 weeks',
+rating: 4.7,
+reviews: 312,
+instructor: 'Dr. Rachel Kumar',
+price: '₹699'
+},
+{
+id: 4,
+category: 'career',
+title: 'Career Transition Strategy',
+description: 'Plan and execute your career change with proven methodologies',
+image: 'cc4.jpg',
+level: 'Intermediate',
+duration: '4 weeks',
+rating: 4.9,
+reviews: 156,
+instructor: 'Jessica Martinez',
+price: '₹399'
+}
+];
+
+function createCourseCard(course) {
+return `
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="${course.image}" alt="${course.title}" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full">${course.level}</span>
+<span class="text-sm text-gray-600">${course.duration}</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">${course.title}</h3>
+<p class="text-gray-600 text-sm mb-4">${course.description}</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center">
+<div class="flex items-center text-yellow-400">
+${Array(5).fill().map((_, i) => `<i class="ri-star-${i < Math.floor(course.rating) ? 'fill' : 'line'} text-sm"></i>`).join('')}
+</div>
+<span class="ml-2 text-sm text-gray-600">(${course.reviews})</span>
+</div>
+<span class="text-lg font-semibold text-gray-900">${course.price}</span>
+</div>
+<div class="flex items-center justify-between">
+<button class="px-4 py-2 text-primary font-medium text-sm hover:bg-primary/5 rounded-button cursor-pointer">Preview</button>
+<button class="px-6 py-2 bg-primary text-white font-medium text-sm hover:bg-primary/90 rounded-button cursor-pointer">Enroll Now</button>
+</div>
+</div>
+</div>
+`;
+}
+
+function filterCourses(category) {
+const filteredCourses = category === 'all' ? courseData : courseData.filter(course => course.category === category);
+document.getElementById('courseGrid').innerHTML = filteredCourses.map(createCourseCard).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+filterCourses('leadership');
+
+const tabs = ['leadership', 'technical', 'career'];
+tabs.forEach(tab => {
+document.getElementById(`${tab}Tab`).addEventListener('click', (e) => {
+tabs.forEach(t => document.getElementById(`${t}Tab`).classList.remove('bg-white', 'shadow-sm'));
+e.target.classList.add('bg-white', 'shadow-sm');
+filterCourses(tab);
+});
+});
+
+const filters = ['skillLevel', 'duration', 'topic'];
+filters.forEach(filter => {
+const btn = document.getElementById(`${filter}Filter`);
+btn.addEventListener('click', (e) => {
+const dropdown = document.createElement('div');
+dropdown.className = 'absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 filter-dropdown z-10';
+dropdown.innerHTML = `
+<div class="px-4 py-2 hover:bg-gray-50 cursor-pointer">Option 1</div>
+<div class="px-4 py-2 hover:bg-gray-50 cursor-pointer">Option 2</div>
+<div class="px-4 py-2 hover:bg-gray-50 cursor-pointer">Option 3</div>
+`;
+document.body.appendChild(dropdown);
+const rect = btn.getBoundingClientRect();
+dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+dropdown.style.left = `${rect.left}px`;
+setTimeout(() => dropdown.classList.add('show'), 0);
+
+const closeDropdown = (e) => {
+if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+dropdown.classList.remove('show');
+setTimeout(() => dropdown.remove(), 200);
+document.removeEventListener('click', closeDropdown);
+}
+};
+document.addEventListener('click', closeDropdown);
+});
+});
+});
+</script>
+</body>
+</html>

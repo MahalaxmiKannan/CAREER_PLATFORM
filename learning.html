@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Catalog - ElevateHer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#FFB6C1',
+secondary: '#FFC0CB'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { font-family: 'Inter', sans-serif; }
+.dropdown {
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: all 0.2s ease-in-out;
+}
+.dropdown.show {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+</style>
+</head>
+<body class="bg-gray-50">
+
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<a href="page1.html" data-readdy="true" class="font-['Pacifico'] text-2xl text-primary">ElevateHer</a>
+<div class="hidden md:flex space-x-8 ml-10">
+<a href="page1.html" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+<a href="course.html" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Explore</a>
+<a href="learning.html" class="text-primary px-3 py-2 text-sm font-medium">Learning</a>
+<a href="mentorship.html" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Mentorship</a>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<input type="text" placeholder="Search courses..." class="w-64 pl-10 pr-4 py-2 text-sm bg-gray-100 border-none rounded-full focus:outline-none focus:ring-2 focus:ring-primary/20">
+<div class="absolute left-3 top-2.5 w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+<button class="relative w-10 h-10 flex items-center justify-center cursor-pointer" id="notificationBtn">
+<i class="ri-notification-3-line text-gray-700"></i>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="relative" id="profileDropdown">
+<button class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer">
+<i class="ri-user-line text-gray-700"></i>
+</button>
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+<main class="pt-16">
+<div class="bg-gradient-to-r from-pink-50 to-pink-100 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center space-x-2 text-sm text-gray-600 mb-6">
+<a href="page1.html" data-readdy="true" class="hover:text-primary">Home</a>
+<i class="ri-arrow-right-s-line"></i>
+<span class="text-gray-900">Course Catalog</span>
+</div>
+<h1 class="text-4xl font-bold text-gray-900 mb-4">Discover Your Next Learning Journey</h1>
+<p class="text-lg text-gray-600 mb-8">Explore our curated collection of courses designed to help you grow professionally.</p>
+
+<div class="bg-white rounded-xl p-6 shadow-sm">
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-sm font-medium text-gray-700 mb-2">Skill Level</label>
+<div class="relative">
+<select class="w-full pr-8 pl-3 py-2 text-sm bg-gray-100 border-none rounded-button appearance-none">
+<option>All Levels</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+<div class="absolute right-3 top-2.5">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+
+<div class="flex-1 min-w-[200px]">
+<label class="block text-sm font-medium text-gray-700 mb-2">Duration</label>
+<div class="relative">
+<select class="w-full pr-8 pl-3 py-2 text-sm bg-gray-100 border-none rounded-button appearance-none">
+<option>Any Duration</option>
+<option>0-2 hours</option>
+<option>2-5 hours</option>
+<option>5+ hours</option>
+</select>
+<div class="absolute right-3 top-2.5">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+
+<div class="flex-1 min-w-[200px]">
+<label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+<div class="relative">
+<select class="w-full pr-8 pl-3 py-2 text-sm bg-gray-100 border-none rounded-button appearance-none">
+<option>All Categories</option>
+<option>Technical Skills</option>
+<option>Leadership</option>
+<option>Professional Development</option>
+</select>
+<div class="absolute right-3 top-2.5">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+
+<div class="flex-1 min-w-[200px]">
+<label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+<div class="relative">
+<select class="w-full pr-8 pl-3 py-2 text-sm bg-gray-100 border-none rounded-button appearance-none">
+<option>Most Popular</option>
+<option>Newest</option>
+<option>Highest Rated</option>
+</select>
+<div class="absolute right-3 top-2.5">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+</div>
+
+<div class="flex flex-wrap gap-2">
+<button class="!rounded-full px-4 py-1 text-sm bg-primary/10 text-primary hover:bg-primary/20 transition cursor-pointer whitespace-nowrap">Popular Topics</button>
+<button class="!rounded-full px-4 py-1 text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition cursor-pointer whitespace-nowrap">New Courses</button>
+<button class="!rounded-full px-4 py-1 text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition cursor-pointer whitespace-nowrap">In Progress</button>
+<button class="!rounded-full px-4 py-1 text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition cursor-pointer whitespace-nowrap">Recommended</button>
+<button class="!rounded-full px-4 py-1 text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition cursor-pointer whitespace-nowrap">Trending</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="mb-12">
+<h2 class="text-2xl font-bold text-gray-900 mb-8">Technical Skills</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/5d5c7e4ae03b01888638a1b2b080742c.jpg" alt="Data Science" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Advanced</span>
+<span class="text-sm text-gray-600">8 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Data Science Fundamentals</h3>
+<p class="text-gray-600 text-sm mb-4">Learn essential data science skills including Python, statistics, and machine learning.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Dr. Sarah Chen</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.8</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/9a1bb65e8ef8159d25a48be5c4422bea.jpg" alt="Web Development" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Intermediate</span>
+<span class="text-sm text-gray-600">6 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Full-Stack Web Development</h3>
+<p class="text-gray-600 text-sm mb-4">Master modern web development with React, Node.js, and cloud technologies.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Michael Rodriguez</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.9</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/a25bdf4bd2755b88fc01e727d241c4ef.jpg" alt="UX Design" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Beginner</span>
+<span class="text-sm text-gray-600">4 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">UI/UX Design Essentials</h3>
+<p class="text-gray-600 text-sm mb-4">Learn the fundamentals of user interface and experience design.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Emma Thompson</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.7</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mb-12">
+<h2 class="text-2xl font-bold text-gray-900 mb-8">Leadership & Management</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/4fc3bc8938eccfba5884d27de35a6c3a.jpg" alt="Leadership" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Advanced</span>
+<span class="text-sm text-gray-600">12 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Executive Leadership Program</h3>
+<p class="text-gray-600 text-sm mb-4">Develop strategic leadership skills for senior management roles.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Victoria Palmer</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.9</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/5b16e03c3482ba6c9fc04a3c6db279f0.jpg" alt="Team Management" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Intermediate</span>
+<span class="text-sm text-gray-600">8 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Team Management Mastery</h3>
+<p class="text-gray-600 text-sm mb-4">Learn effective techniques for leading and motivating teams.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">James Anderson</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.8</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/4bbe6213d260cd6e2ca0402b9eed9590.jpg" alt="Strategic Planning" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Advanced</span>
+<span class="text-sm text-gray-600">6 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Strategic Business Planning</h3>
+<p class="text-gray-600 text-sm mb-4">Master the art of strategic planning and business development.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Rachel Morgan</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.7</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mb-12">
+<h2 class="text-2xl font-bold text-gray-900 mb-8">Professional Development</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/cf6926ef8bf4cefa2a2b72afb677ea2c.jpg" alt="Public Speaking" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Beginner</span>
+<span class="text-sm text-gray-600">4 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Public Speaking Mastery</h3>
+<p class="text-gray-600 text-sm mb-4">Build confidence and master the art of public speaking.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Alexandra Davis</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.9</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/1dccddd763870e0651e83f5f8d02dca1.jpg" alt="Negotiation Skills" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Intermediate</span>
+<span class="text-sm text-gray-600">6 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Negotiation Skills</h3>
+<p class="text-gray-600 text-sm mb-4">Learn effective negotiation strategies for business success.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Daniel Wright</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.8</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+<img src="https://public.readdy.ai/ai/img_res/2f53d258360aa10b3adfd949701112e8.jpg" alt="Personal Branding" class="w-full h-48 object-cover">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 text-xs font-medium text-primary bg-pink-100 rounded-full">Beginner</span>
+<span class="text-sm text-gray-600">4 weeks</span>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Personal Branding</h3>
+<p class="text-gray-600 text-sm mb-4">Build a strong personal brand for career advancement.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<span class="ml-2 text-sm text-gray-900">Sophia Martinez</span>
+</div>
+<div class="flex items-center">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span class="text-sm text-gray-600">4.7</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<footer class="bg-pink-900 text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a href="#" class="font-['Pacifico'] text-2xl text-white mb-4 block">ElevateHer</a>
+<p class="text-gray-400 text-sm">Empowering women to achieve their career goals through mentorship and skill development.</p>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Programs</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Mentorship</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Events</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Resources</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Careers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Support</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+<p class="text-gray-400 text-sm mb-4">Stay updated with our latest opportunities and news.</p>
+<form class="space-y-2">
+<input type="email" placeholder="Enter your email" class="w-full px-4 py-2 rounded-button bg-pink-800 border-none text-white placeholder-gray-500 focus:ring-2 focus:ring-primary">
+<button type="submit" class="w-full !rounded-button bg-primary text-white px-4 py-2 hover:bg-primary/90 transition cursor-pointer">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="border-t border-pink-800 mt-12 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm">© 2025 ElevateHer. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const notificationBtn = document.getElementById('notificationBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+
+notificationBtn.addEventListener('click', () => {
+const dropdown = document.createElement('div');
+dropdown.className = 'absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg py-2 dropdown';
+dropdown.innerHTML = `
+<div class="px-4 py-2 border-b">
+<h3 class="text-sm font-semibold text-gray-900">Notifications</h3>
+</div>
+<div class="max-h-64 overflow-y-auto">
+<a href="#" class="block px-4 py-3 hover:bg-gray-50">
+<div class="flex items-start">
+<div class="flex-shrink-0">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<i class="ri-calendar-line text-primary"></i>
+</div>
+</div>
+<div class="ml-3">
+<p class="text-sm font-medium text-gray-900">New course recommendation</p>
+<p class="text-xs text-gray-500 mt-1">15 minutes ago</p>
+</div>
+</div>
+</a>
+<a href="#" class="block px-4 py-3 hover:bg-gray-50">
+<div class="flex items-start">
+<div class="flex-shrink-0">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+<i class="ri-message-2-line text-secondary"></i>
+</div>
+</div>
+<div class="ml-3">
+<p class="text-sm font-medium text-gray-900">Course completion certificate ready</p>
+<p class="text-xs text-gray-500 mt-1">1 hour ago</p>
+</div>
+</div>
+</a>
+</div>
+<div class="px-4 py-2 border-t">
+<a href="#" class="text-sm text-primary font-medium">View all notifications</a>
+</div>
+`;
+
+document.body.appendChild(dropdown);
+const rect = notificationBtn.getBoundingClientRect();
+dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+dropdown.style.right = `${window.innerWidth - rect.right}px`;
+setTimeout(() => dropdown.classList.add('show'), 0);
+
+const closeDropdown = (e) => {
+if (!notificationBtn.contains(e.target) && !dropdown.contains(e.target)) {
+dropdown.classList.remove('show');
+setTimeout(() => dropdown.remove(), 200);
+document.removeEventListener('click', closeDropdown);
+}
+};
+
+document.addEventListener('click', closeDropdown);
+});
+
+profileDropdown.querySelector('button').addEventListener('click', () => {
+const dropdown = document.createElement('div');
+dropdown.className = 'absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 dropdown';
+dropdown.innerHTML = `
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Your Profile</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Settings</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">My Courses</a>
+<div class="border-t border-gray-100 my-1"></div>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Sign out</a>
+`;
+
+document.body.appendChild(dropdown);
+const rect = profileDropdown.getBoundingClientRect();
+dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+dropdown.style.right = `${window.innerWidth - rect.right}px`;
+setTimeout(() => dropdown.classList.add('show'), 0);
+
+const closeDropdown = (e) => {
+if (!profileDropdown.contains(e.target) && !dropdown.contains(e.target)) {
+dropdown.classList.remove('show');
+setTimeout(() => dropdown.remove(), 200);
+document.removeEventListener('click', closeDropdown);
+}
+};
+
+document.addEventListener('click', closeDropdown);
+});
+});
+</script>
+</body>
+</html>

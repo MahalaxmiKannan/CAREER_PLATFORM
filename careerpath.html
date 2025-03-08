@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Paths - ElevateHer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#FFB6C1',
+secondary: '#FFC0CB'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { font-family: 'Inter', sans-serif; }
+.dropdown {
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: all 0.2s ease-in-out;
+}
+.dropdown.show {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<a href="page1.html" data-readdy="true" class="font-['Pacifico'] text-2xl text-primary">ElevateHer</a>
+<div class="hidden md:flex space-x-8 ml-10">
+<a href="page1.html" data-readdy="true" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+<a href="careerpath.html" class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium">Career Paths</a>
+<a href="mentorship.html" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Mentorship</a>
+<a href="#" class="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">Learning</a>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<input type="text" placeholder="Search career paths..." class="w-64 pl-10 pr-4 py-2 text-sm bg-gray-100 border-none rounded-full focus:outline-none focus:ring-2 focus:ring-primary/20">
+<div class="absolute left-3 top-2.5 w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center cursor-pointer" id="notificationBtn">
+<i class="ri-notification-3-line text-gray-700"></i>
+</button>
+<div class="relative" id="profileDropdown">
+<button class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer">
+<i class="ri-user-line text-gray-700"></i>
+</button>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<main class="pt-16">
+<section class="bg-gradient-to-r from-pink-50 to-pink-100 py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<nav class="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+<a href="page1.html" data-readdy="true" class="hover:text-primary">Home</a>
+<i class="ri-arrow-right-s-line"></i>
+<span class="text-primary">Career Paths</span>
+</nav>
+<h1 class="text-4xl font-bold text-gray-900">Discover Your Career Path</h1>
+<p class="text-xl text-gray-600">Explore diverse career tracks, gain insights from industry experts, and plan your professional journey with confidence.</p>
+<div class="flex flex-wrap gap-4">
+<button class="!rounded-button bg-primary text-white px-6 py-3 font-medium hover:bg-primary/90 transition cursor-pointer whitespace-nowrap">
+<i class="ri-road-map-line mr-2"></i>Explore Paths
+</button>
+<button class="!rounded-button bg-white text-primary px-6 py-3 font-medium border-2 border-primary hover:bg-primary/5 transition cursor-pointer whitespace-nowrap">
+<i class="ri-user-star-line mr-2"></i>Find a Mentor
+</button>
+</div>
+</div>
+<div class="relative h-[500px]">
+<img src="cp1.jpg" class="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-xl" alt="Career paths visualization">
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-2xl font-bold text-gray-900">Popular Career Paths</h2>
+<p class="text-gray-600 mt-2">Choose from our curated selection of in-demand career tracks</p>
+</div>
+<div class="flex space-x-2">
+<button class="!rounded-button bg-gray-100 px-4 py-2 text-sm font-medium hover:bg-gray-200 transition cursor-pointer whitespace-nowrap">
+<i class="ri-filter-3-line mr-2"></i>Filter
+</button>
+<button class="!rounded-button bg-gray-100 px-4 py-2 text-sm font-medium hover:bg-gray-200 transition cursor-pointer whitespace-nowrap">
+<i class="ri-sort-desc-line mr-2"></i>Sort
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white rounded-xl border hover:shadow-lg transition cursor-pointer group">
+<div class="p-6">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20">
+<i class="ri-code-s-slash-line text-primary text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Software Engineering</h3>
+<p class="text-gray-600 text-sm mb-4">Build the future through code. Learn modern software development practices and tools.</p>
+<div class="space-y-3">
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-time-line mr-2"></i>
+<span>4-6 years progression</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-money-dollar-circle-line mr-2"></i>
+<span>$70k - $150k+</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-group-line mr-2"></i>
+<span>125 active mentors</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-gray-50 rounded-b-xl">
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-user-line text-gray-400"></i>
+</div>
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-user-line text-gray-400"></i>
+</div>
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-add-line text-gray-400"></i>
+</div>
+</div>
+<button class="text-primary font-medium text-sm group-hover:text-primary/80">View Path →</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl border hover:shadow-lg transition cursor-pointer group">
+<div class="p-6">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20">
+<i class="ri-layout-4-line text-primary text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Product Design</h3>
+<p class="text-gray-600 text-sm mb-4">Create impactful digital experiences through user-centered design approaches.</p>
+<div class="space-y-3">
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-time-line mr-2"></i>
+<span>3-5 years progression</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-money-dollar-circle-line mr-2"></i>
+<span>$65k - $130k+</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-group-line mr-2"></i>
+<span>98 active mentors</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-gray-50 rounded-b-xl">
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-user-line text-gray-400"></i>
+</div>
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-user-line text-gray-400"></i>
+</div>
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-add-line text-gray-400"></i>
+</div>
+</div>
+<button class="text-primary font-medium text-sm group-hover:text-primary/80">View Path →</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl border hover:shadow-lg transition cursor-pointer group">
+<div class="p-6">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20">
+<i class="ri-line-chart-line text-primary text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Product Management</h3>
+<p class="text-gray-600 text-sm mb-4">Lead product strategy and execution to deliver exceptional user value.</p>
+<div class="space-y-3">
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-time-line mr-2"></i>
+<span>4-7 years progression</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-money-dollar-circle-line mr-2"></i>
+<span>$80k - $160k+</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-group-line mr-2"></i>
+<span>145 active mentors</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-gray-50 rounded-b-xl">
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-user-line text-gray-400"></i>
+</div>
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-user-line text-gray-400"></i>
+</div>
+<div class="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center">
+<i class="ri-add-line text-gray-400"></i>
+</div>
+</div>
+<button class="text-primary font-medium text-sm group-hover:text-primary/80">View Path →</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="text-2xl font-bold text-gray-900 mb-6">Career Growth Trends</h2>
+<div class="space-y-6">
+<div class="bg-white rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-gray-900">Salary Growth</h3>
+<select class="bg-gray-100 border-none rounded-full text-sm px-4 py-2 pr-8">
+<option>Last 12 months</option>
+<option>Last 6 months</option>
+<option>Last 3 months</option>
+</select>
+</div>
+<div id="salaryChart" style="width: 100%; height: 320px;"></div>
+</div>
+<div class="bg-white rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-gray-900">In-Demand Skills</h3>
+<select class="bg-gray-100 border-none rounded-full text-sm px-4 py-2 pr-8">
+<option>Technology</option>
+<option>Design</option>
+<option>Management</option>
+</select>
+</div>
+<div id="skillsChart" style="width: 100%; height: 320px;"></div>
+</div>
+</div>
+</div>
+<div>
+<div class="bg-white rounded-xl p-8 shadow-sm">
+<h3 class="text-xl font-semibold text-gray-900 mb-6">Success Story Spotlight</h3>
+<div class="flex items-start space-x-4 mb-6">
+<img src="https://public.readdy.ai/ai/img_res/bded90c4aa65e74f348a8566f2a7e11e.jpg" class="w-16 h-16 rounded-full object-cover" alt="Success story">
+<div>
+<h4 class="font-medium text-gray-900">Sarah Chen</h4>
+<p class="text-sm text-gray-600">VP of Product, TechCorp</p>
+</div>
+</div>
+<p class="text-gray-600 text-sm mb-6">"Through ElevateHer's structured career path and mentorship program, I transitioned from a software engineer to leading product strategy. The guidance and resources were invaluable in helping me navigate this career pivot."</p>
+<div class="space-y-4">
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-timer-line mr-2 text-primary"></i>
+<span>Career Transition: 2.5 years</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-arrow-up-circle-line mr-2 text-primary"></i>
+<span>Salary Increase: 85%</span>
+</div>
+<div class="flex items-center text-sm text-gray-600">
+<i class="ri-medal-line mr-2 text-primary"></i>
+<span>Key Achievement: Led 3 successful product launches</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-2xl font-bold text-gray-900 mb-4">Learning Resources</h2>
+<p class="text-gray-600">Curated content to help you excel in your chosen career path</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white rounded-xl border hover:shadow-lg transition cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/75a4fb5d76499db8d874bebc489c0952.jpg" alt="Leadership workshop" class="w-full h-48 object-cover rounded-t-xl">
+<div class="p-6">
+<span class="inline-block px-3 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full mb-3">Workshop</span>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Leadership Essentials</h3>
+<p class="text-gray-600 text-sm mb-4">Master key leadership skills needed for career advancement</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-500">4 weeks • 8 sessions</span>
+<button class="text-primary font-medium text-sm">Learn More →</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl border hover:shadow-lg transition cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/b6e27495524426115106519a710cbaec.jpg" alt="Mentorship program" class="w-full h-48 object-cover rounded-t-xl">
+<div class="p-6">
+<span class="inline-block px-3 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full mb-3">Program</span>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Mentorship Connect</h3>
+<p class="text-gray-600 text-sm mb-4">One-on-one guidance from industry leaders</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-500">3 months • Flexible</span>
+<button class="text-primary font-medium text-sm">Learn More →</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl border hover:shadow-lg transition cursor-pointer">
+<img src="https://public.readdy.ai/ai/img_res/6c830ab555f6864611a2eaf40c556758.jpg" alt="Technical skills" class="w-full h-48 object-cover rounded-t-xl">
+<div class="p-6">
+<span class="inline-block px-3 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full mb-3">Course</span>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Technical Skills Bootcamp</h3>
+<p class="text-gray-600 text-sm mb-4">Intensive training in high-demand technical skills</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-500">6 weeks • Self-paced</span>
+<button class="text-primary font-medium text-sm">Learn More →</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-primary/5">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to Start Your Journey?</h2>
+<p class="text-gray-600">Take the first step towards your dream career</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white rounded-xl p-6 text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-profile-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Create Profile</h3>
+<p class="text-gray-600 text-sm">Build your professional profile and highlight your aspirations</p>
+</div>
+<div class="bg-white rounded-xl p-6 text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-road-map-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Choose Path</h3>
+<p class="text-gray-600 text-sm">Select a career track aligned with your goals</p>
+</div>
+<div class="bg-white rounded-xl p-6 text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-user-star-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Get Matched</h3>
+<p class="text-gray-600 text-sm">Connect with mentors and start your journey</p>
+</div>
+</div>
+<div class="text-center mt-12">
+<a href="createprofile.html" data-readdy="true" class="inline-block">
+  <button class="!rounded-button bg-primary text-white px-8 py-3 font-medium hover:bg-primary/90 transition cursor-pointer whitespace-nowrap">
+    Start Your Journey
+  </button>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-pink-900 text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a href="#" class="font-['Pacifico'] text-2xl text-white mb-4 block">ElevateHer</a>
+<p class="text-gray-400 text-sm">Empowering women to achieve their career goals through mentorship and skill development.</p>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Programs</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Mentorship</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Events</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Resources</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Careers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Support</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+<p class="text-gray-400 text-sm mb-4">Stay updated with our latest opportunities and news.</p>
+<form class="space-y-2">
+<input type="email" placeholder="Enter your email" class="w-full px-4 py-2 rounded-button bg-pink-800 border-none text-white placeholder-gray-500 focus:ring-2 focus:ring-primary">
+<button type="submit" class="w-full !rounded-button bg-primary text-white px-4 py-2 hover:bg-primary/90 transition cursor-pointer">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="border-t border-pink-800 mt-12 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm">© 2025 ElevateHer. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const salaryChart = echarts.init(document.getElementById('salaryChart'), null, {
+width: 'auto',
+height: '100%'
+});
+const skillsChart = echarts.init(document.getElementById('skillsChart'), null, {
+width: 'auto',
+height: '100%'
+});
+const salaryOption = {
+animation: false,
+grid: {
+top: 30,
+right: 30,
+bottom: 30,
+left: 50,
+containLabel: true
+},
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.95)',
+borderRadius: 8,
+padding: [8, 12],
+textStyle: {
+color: '#1f2937',
+fontSize: 12
+},
+formatter: function(params) {
+return `${params[0].name}<br/><span style="color:rgba(87, 181, 231, 1);font-weight:500">$${params[0].value}k</span>`;
+}
+},
+xAxis: {
+type: 'category',
+data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+axisLine: {
+show: true,
+lineStyle: {
+color: '#e5e7eb'
+}
+},
+axisTick: {
+show: false
+},
+axisLabel: {
+color: '#64748b',
+fontSize: 11,
+padding: [8, 0]
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+show: false
+},
+axisTick: {
+show: false
+},
+splitLine: {
+lineStyle: {
+color: '#f1f5f9',
+width: 1
+}
+},
+axisLabel: {
+color: '#64748b',
+fontSize: 11,
+formatter: '${value}k',
+padding: [0, 8]
+}
+},
+series: [{
+name: 'Average Salary',
+data: [70, 75, 78, 80, 85, 88, 92, 95, 98, 102, 105, 110],
+type: 'line',
+smooth: true,
+symbol: 'circle',
+symbolSize: 10,
+itemStyle: {
+color: '#fff',
+borderWidth: 3,
+borderColor: 'rgba(87, 181, 231, 1)',
+shadowColor: 'rgba(87, 181, 231, 0.3)',
+shadowBlur: 10
+},
+lineStyle: {
+width: 4,
+color: 'rgba(87, 181, 231, 1)',
+shadowColor: 'rgba(87, 181, 231, 0.2)',
+shadowBlur: 10
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+offset: 0,
+color: 'rgba(87, 181, 231, 0.3)'
+}, {
+offset: 0.5,
+color: 'rgba(87, 181, 231, 0.1)'
+}, {
+offset: 1,
+color: 'rgba(87, 181, 231, 0)'
+}])
+}
+}]
+};
+const skillsOption = {
+animation: false,
+grid: {
+top: 30,
+right: 50,
+bottom: 30,
+left: 120,
+containLabel: true
+},
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.95)',
+borderRadius: 8,
+padding: [8, 12],
+textStyle: {
+color: '#1f2937',
+fontSize: 12
+},
+formatter: function(params) {
+return `${params[0].name}<br/><span style="font-weight:500">${params[0].value}% Demand</span>`;
+}
+},
+xAxis: {
+type: 'value',
+max: 100,
+axisLine: {
+show: true,
+lineStyle: {
+color: '#e5e7eb'
+}
+},
+axisTick: {
+show: false
+},
+splitLine: {
+lineStyle: {
+color: '#f1f5f9',
+width: 1
+}
+},
+axisLabel: {
+color: '#64748b',
+fontSize: 11,
+formatter: '{value}%',
+padding: [0, 8]
+}
+},
+yAxis: {
+type: 'category',
+data: ['Cloud Computing', 'Data Analysis', 'UI/UX Design', 'React', 'Node.js'],
+axisLine: {
+show: false
+},
+axisTick: {
+show: false
+},
+axisLabel: {
+color: '#64748b',
+fontSize: 11,
+padding: [0, 16]
+}
+},
+series: [{
+name: 'Demand Level',
+type: 'bar',
+barWidth: '50%',
+data: [95, 88, 82, 76, 70],
+itemStyle: {
+borderRadius: [0, 4, 4, 0],
+color: function(params) {
+const colors = [
+'rgba(87, 181, 231, 1)',
+'rgba(141, 211, 199, 1)',
+'rgba(251, 191, 114, 1)',
+'rgba(252, 141, 98, 1)',
+'rgba(252, 205, 229, 1)'
+];
+return new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+offset: 0,
+color: colors[params.dataIndex]
+}, {
+offset: 1,
+color: echarts.color.lift(colors[params.dataIndex], 0.2)
+}]);
+},
+shadowColor: 'rgba(0, 0, 0, 0.1)',
+shadowBlur: 10
+},
+label: {
+show: true,
+position: 'right',
+distance: 8,
+formatter: '{c}%',
+color: '#1f2937',
+fontSize: 12,
+fontWeight: 500
+}
+}]
+};
+salaryChart.setOption(salaryOption);
+skillsChart.setOption(skillsOption);
+const resizeCharts = () => {
+salaryChart.resize();
+skillsChart.resize();
+};
+window.addEventListener('resize', resizeCharts);
+setTimeout(resizeCharts, 100); // Initial resize after charts are created
+const notificationBtn = document.getElementById('notificationBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+notificationBtn.addEventListener('click', () => {
+const dropdown = document.createElement('div');
+dropdown.className = 'absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg py-2 dropdown';
+dropdown.innerHTML = `
+<div class="px-4 py-2 border-b">
+<h3 class="text-sm font-semibold text-gray-900">Notifications</h3>
+</div>
+<div class="max-h-64 overflow-y-auto">
+<a href="#" class="block px-4 py-3 hover:bg-gray-50">
+<div class="flex items-start">
+<div class="flex-shrink-0">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<i class="ri-calendar-line text-primary"></i>
+</div>
+</div>
+<div class="ml-3">
+<p class="text-sm font-medium text-gray-900">New career path recommendation</p>
+<p class="text-xs text-gray-500 mt-1">15 minutes ago</p>
+</div>
+</div>
+</a>
+<a href="#" class="block px-4 py-3 hover:bg-gray-50">
+<div class="flex items-start">
+<div class="flex-shrink-0">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+<i class="ri-message-2-line text-secondary"></i>
+</div>
+</div>
+<div class="ml-3">
+<p class="text-sm font-medium text-gray-900">Mentor match available</p>
+<p class="text-xs text-gray-500 mt-1">1 hour ago</p>
+</div>
+</div>
+</a>
+</div>
+<div class="px-4 py-2 border-t">
+<a href="#" class="text-sm text-primary font-medium">View all notifications</a>
+</div>
+`;
+document.body.appendChild(dropdown);
+const rect = notificationBtn.getBoundingClientRect();
+dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+dropdown.style.right = `${window.innerWidth - rect.right}px`;
+setTimeout(() => dropdown.classList.add('show'), 0);
+const closeDropdown = (e) => {
+if (!notificationBtn.contains(e.target) && !dropdown.contains(e.target)) {
+dropdown.classList.remove('show');
+setTimeout(() => dropdown.remove(), 200);
+document.removeEventListener('click', closeDropdown);
+}
+};
+document.addEventListener('click', closeDropdown);
+});
+});
+</script>
+</body>
+</html>
