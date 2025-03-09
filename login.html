@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ElevateHer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFB6C1',
+                        secondary: '#FFC0CB'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-pink-50 to-pink-100">
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="font-['Pacifico'] text-2xl text-primary">ElevateHer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-16 min-h-screen grid md:grid-cols-2">
+        <div class="flex items-center justify-center p-8">
+            <div class="w-full max-w-md bg-white rounded-xl shadow-xl p-8">
+                <div class="mb-8">
+                    <h1 class="text-2xl font-semibold text-gray-900">Welcome to ElevateHer</h1>
+                    <p class="text-gray-600">Your journey to career growth starts here</p>
+                </div>
+
+                <div class="tabs">
+                    <div class="flex space-x-4 border-b mb-8">
+                        <button onclick="switchTab('login')" class="flex-1 text-center py-2 border-b-2 border-primary text-primary font-medium" id="loginTab">Login</button>
+                        <button onclick="switchTab('register')" class="flex-1 text-center py-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" id="registerTab">Register</button>
+                    </div>
+
+                    <div id="loginForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                            <input type="text" id="loginUsername" class="w-full px-4 py-2 rounded-button border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <input type="password" id="loginPassword" class="w-full px-4 py-2 rounded-button border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <button onclick="handleLogin()" class="w-full bg-primary text-white px-4 py-2 rounded-button hover:bg-primary/90 transition">Login</button>
+                    </div>
+
+                    <div id="registerForm" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                            <input type="text" id="regUsername" class="w-full px-4 py-2 rounded-button border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <input type="password" id="regPassword" class="w-full px-4 py-2 rounded-button border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="regFullName" class="w-full px-4 py-2 rounded-button border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <button onclick="handleRegister()" class="w-full bg-primary text-white px-4 py-2 rounded-button hover:bg-primary/90 transition">Create Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden md:flex items-center justify-center p-8 bg-gradient-to-r from-pink-100 to-pink-200">
+            <div class="max-w-md space-y-6 text-center">
+                <h2 class="text-4xl font-bold text-gray-900">Empower Your Career Journey</h2>
+                <p class="text-xl text-gray-600">Connect with mentors, develop new skills, and join a community of ambitious women shaping the future.</p>
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="p-4 bg-white rounded-xl shadow-sm">
+                        <div class="text-3xl font-bold text-primary">500+</div>
+                        <div class="text-sm text-gray-600">Expert Mentors</div>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm">
+                        <div class="text-3xl font-bold text-primary">10k+</div>
+                        <div class="text-sm text-gray-600">Success Stories</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (tab === 'login') {
+                loginTab.classList.add('border-primary', 'text-primary');
+                registerTab.classList.remove('border-primary', 'text-primary');
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+            } else {
+                registerTab.classList.add('border-primary', 'text-primary');
+                loginTab.classList.remove('border-primary', 'text-primary');
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            }
+        }
+
+        async function handleLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    window.location.href = '/assets/page1.html';
+                } else {
+                    alert('Login failed. Please check your credentials.');
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('An error occurred during login.');
+            }
+        }
+
+        async function handleRegister() {
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const fullName = document.getElementById('regFullName').value;
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        fullName,
+                        title: '',
+                        bio: '',
+                        expertise: [],
+                        goals: [],
+                        isMentor: false
+                    })
+                });
+
+                if (response.ok) {
+                    window.location.href = '/assets/page1.html';
+                } else {
+                    alert('Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                alert('An error occurred during registration.');
+            }
+        }
+    </script>
+</body>
+</html>
